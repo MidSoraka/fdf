@@ -6,7 +6,7 @@
 #    By: vlaine <vlaine@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/04 18:25:17 by raho              #+#    #+#              #
-#    Updated: 2022/03/16 13:45:13 by vlaine           ###   ########.fr        #
+#    Updated: 2022/03/18 14:39:26 by vlaine           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ INCLUDES = libft/
 #INCLUDE = /usr/X11/include
 #LIBRARIES = /usr/X11/lib
 CFLAGS = -Wall -Wextra -Werror
-SRCS = main.c math.c pixel_placement.c
+SRCS = main.c math.c pixel_placement.c save_coordinates.c free_all.c copy_file.c \
+inputs.c handle_file.c open_window.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)

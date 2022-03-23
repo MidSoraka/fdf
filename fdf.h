@@ -6,7 +6,7 @@
 /*   By: vlaine <vlaine@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 13:58:37 by vlaine            #+#    #+#             */
-/*   Updated: 2022/03/16 14:28:39 by vlaine           ###   ########.fr       */
+/*   Updated: 2022/03/23 03:02:07 by vlaine           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,32 @@
 # include <fcntl.h>
 # include "libft.h"
 # include "mlx.h"
+#include <stdio.h> // remove
 
+typedef struct  	s_params
+{
+	
+	struct s_mlx	*mlx;
+	double			alpha;
+	double			beta;
+	int				loc_x;
+	int				loc_y;
+	int				loc_z;
+	int				win_x;
+	int				win_y;
+	int				***coord;
+	int				bpp;
+	int				size_line;
+	int				erdian;
+}               	t_params;
+
+typedef struct s_mlx
+{
+	void		*mlx_ptr;
+    void		*win_ptr;
+	void		*image_ptr;
+	char		*image_add;
+}				t_mlx;
 
 typedef struct  s_fdf
 {
@@ -28,16 +53,16 @@ typedef struct  s_fdf
     struct s_fdf    *next;
 }               t_fdf;
 
-typedef struct  s_params
-{
-	void		*mlx_ptr;
-    void		*win_ptr;
-	double		alpha;
-	double		beta;
-	int			***coord;
-}               t_params;
-
-int		*rotation_matrices(int *vector3, t_params *params);
+void	rotation_matrices(int *vector3, t_params *params, int *ptr);
+void	save_coordinates(t_params *params, t_fdf *elem, int fd);
 void	pixel_placement(t_params *params);
+t_fdf	*read_file(t_params *params, int fd);
+void	free_all(t_params *params, t_fdf *head);
+void	free_params(t_params *params);
+void	free_fdf(t_fdf *head);
+int		exit_window(int key, void *params);
+int		open_fd(char *file, int argc);
+int		draw_extra_line(void *params);
+void	open_window(t_params *params);
 
 #endif
